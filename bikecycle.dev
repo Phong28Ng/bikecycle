@@ -737,7 +737,8 @@ void drawControlsText(void)
         "S: Lui lai",
         "D: Re phai",
         "L: Tu dong chay",
-        "K: Dung lai"
+        "K: Dung lai",
+        "Esc: thoat chuong trinh"
     };
     int numControls = sizeof(controls) / sizeof(controls[0]);
     void *font = GLUT_BITMAP_HELVETICA_12;
@@ -1127,14 +1128,9 @@ void help(void)
     printf("  S: Lui lai\n");
     printf("  A: Re trai\n");
     printf("  D: Re phai\n");
-    printf("  +: Tang toc\n");
-    printf("  -: Giam toc\n");
-    printf("  Q: Nhac banh truoc\n");
     printf("  L: Tu dong chay\n");
     printf("  K: Dung lai\n");
     printf("  R: Dat lai\n");
-    printf("  Phim mui ten: Di chuyen camera\n");
-    printf("  Keo chuot: Xoay canh\n");
     printf("  ESC: Thoat\n");
 }
 
