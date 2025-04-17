@@ -116,9 +116,12 @@ void updateScene()
     GLfloat sin_steering, cos_steering;
     const GLfloat DECELERATION = 0.02f;
 
-    if (Abs(speed) > 0.0f && Abs(speed) < INC_SPEED / 10.0f) {
+    if (Abs(speed) > 0.0f && Abs(speed) < INC_SPEED / 10.0f)
+    {
         speed = 0.0f;
-    } else if (speed != 0.0f && !autoRun) { // Skip deceleration in auto-run mode
+    } 
+    else if (speed != 0.0f && !autoRun) 
+    { // Skip deceleration in auto-run mode
         speed -= (speed > 0.0f ? DECELERATION : -DECELERATION);
         if (Abs(speed) < DECELERATION) speed = 0.0f;
     }
@@ -325,7 +328,8 @@ void gear(GLfloat inner_radius, GLfloat outer_radius, GLfloat width,
     glEnd();
 
     glBegin(GL_QUADS);
-    for (i = 0; i < teeth; i++) {
+    for (i = 0; i < teeth; i++)
+    {
         angle = i * 2.0 * PI / teeth;
         glVertex3f(r1 * cos(angle + 3 * da), r1 * sin(angle + 3 * da), -width * 0.5f);
         glVertex3f(r2 * cos(angle + 2 * da), r2 * sin(angle + 2 * da), -width * 0.5f);
@@ -335,7 +339,8 @@ void gear(GLfloat inner_radius, GLfloat outer_radius, GLfloat width,
     glEnd();
 
     glBegin(GL_QUAD_STRIP);
-    for (i = 0; i < teeth; i++) {
+    for (i = 0; i < teeth; i++) 
+    {
         angle = i * 2.0 * PI / teeth;
         glVertex3f(r1 * cos(angle), r1 * sin(angle), width * 0.5f);
         glVertex3f(r1 * cos(angle), r1 * sin(angle), -width * 0.5f);
@@ -361,7 +366,8 @@ void gear(GLfloat inner_radius, GLfloat outer_radius, GLfloat width,
 
     glShadeModel(GL_SMOOTH);
     glBegin(GL_QUAD_STRIP);
-    for (i = 0; i <= teeth; i++) {
+    for (i = 0; i <= teeth; i++) 
+    {
         angle = i * 2.0 * PI / teeth;
         glNormal3f(-cos(angle), -sin(angle), 0.0f);
         glVertex3f(r0 * cos(angle), r0 * sin(angle), -width * 0.5f);
@@ -386,7 +392,8 @@ void drawChain()
     else if (mode == 1 && Abs(speed) > 0) glLineStipple(1, 0x00FF);
 
     glBegin(GL_LINES);
-    for (depth = 0.06f; depth <= 0.12f; depth += 0.01f) {
+    for (depth = 0.06f; depth <= 0.12f; depth += 0.01f) 
+    {
         glVertex3f(-1.6f, 0.15f, ROD_RADIUS);
         glVertex3f(0.0f, 0.3f, depth);
         glVertex3f(-1.6f, -0.15f, ROD_RADIUS);
@@ -850,9 +857,12 @@ void keyboard(unsigned char key, int x, int y)
         case 'S':
             // Set direction to backward (negative speed)
             autoRun = 0; // Disable auto-run when manual control is used
-            if (speed <= 0.0f) {
+            if (speed <= 0.0f) 
+            {
                 speed -= INC_SPEED; // Decrease speed if already moving backward
-            } else {
+            } 
+            else 
+            {
                 speed = -speed; // Reverse direction if moving forward
                 speed -= INC_SPEED; // Then decrease speed
             }
@@ -869,10 +879,13 @@ void keyboard(unsigned char key, int x, int y)
         case '+':
             // Increase the absolute speed (go faster) while keeping direction
             autoRun = 0; // Disable auto-run when manual control is used
-            if (speed >= 0.0f) {
+            if (speed >= 0.0f) 
+            {
                 speed += INC_SPEED;
                 if (speed > MAX_SPEED) speed = MAX_SPEED;
-            } else {
+            }
+            else 
+            {
                 speed -= INC_SPEED; // Speed is negative, so subtract to increase absolute value
                 if (speed < MIN_SPEED) speed = MIN_SPEED;
             }
@@ -880,17 +893,21 @@ void keyboard(unsigned char key, int x, int y)
         case '-':
             // Decrease the absolute speed (go slower) while keeping direction
             autoRun = 0; // Disable auto-run when manual control is used
-            if (speed >= 0.0f) {
+            if (speed >= 0.0f)  
+            {
                 speed -= INC_SPEED;
                 if (speed < 0.0f) speed = 0.0f; // Don't let it go negative
-            } else {
+            }
+            else 
+            {
                 speed += INC_SPEED; // Speed is negative, so add to decrease absolute value
                 if (speed > 0.0f) speed = 0.0f; // Don't let it go positive
             }
             break;
         case 'q':
         case 'Q':
-            if (!wheelieActive) {
+            if (!wheelieActive) 
+            {
                 wheelieAngle = WHEELIE_ANGLE; // Set wheelie angle
                 wheelieActive = 1;
                 wheelieTimer = glutGet(GLUT_ELAPSED_TIME);
@@ -923,12 +940,16 @@ void keyboard(unsigned char key, int x, int y)
  ******************************************/
 void mouse(int button, int state, int x, int y)
 {
-    if (button == GLUT_LEFT_BUTTON) {
-        if (state == GLUT_DOWN) {
+    if (button == GLUT_LEFT_BUTTON) 
+    {
+        if (state == GLUT_DOWN)  
+        {
             Mouse = GLUT_DOWN;
             prevx = x;
             prevy = y;
-        } else {
+        }
+        else 
+        {
             Mouse = GLUT_UP;
         }
     }
@@ -940,7 +961,8 @@ void mouse(int button, int state, int x, int y)
  ******************************************/
 void motion(int x, int y)
 {
-    if (Mouse == GLUT_DOWN) {
+    if (Mouse == GLUT_DOWN) 
+    {
         int deltax = prevx - x;
         int deltay = prevy - y;
         anglex += 0.5f * deltax;
