@@ -44,9 +44,9 @@
 #define FRONT_INCLINE   75.0f
 #define HANDLE_LIMIT    70.0f
 #define INC_STEERING    2.0f
-#define INC_SPEED       0.2f
-#define MAX_SPEED       0.2f
-#define MIN_SPEED      -0.2f
+#define INC_SPEED       0.16f
+#define MAX_SPEED       0.16f
+#define MIN_SPEED      -0.16f
 #define WHEELIE_ANGLE   30.0f
 #define WHEELIE_DURATION 1000
 
